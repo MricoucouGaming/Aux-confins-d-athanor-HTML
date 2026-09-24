@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aux confins d'Athanor — Documentation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0c0f; --bg2:#111318; --panel:#171a20; --panel2:#1d2129;
+  --border:#2b3038; --gold:#c9a24a; --gold-soft:#e8cf8a; --red:#9c3b34; --red-soft:#c96a5f;
+  --cream:#e9e4d8; --muted:#8e93a1; --dim:#5b606c;
+  --maxw:920px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:24px;}
+body{
+  margin:0;background:var(--bg);color:var(--cream);
+  font-family:'Inter',ui-sans-serif,system-ui,sans-serif;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  line-height:1.65;
+}
+::selection{background:var(--gold);color:#141414;}
+
+/* ---------- HERO ---------- */
+.hero{
+  padding:88px 24px 64px; text-align:center; position:relative; overflow:hidden;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201,162,74,0.10), transparent 70%),
+    var(--bg2);
+  border-bottom:1px solid var(--border);
+}
+.hero-eyebrow{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; letter-spacing:.14em;
+  color:var(--gold); margin-bottom:18px; opacity:.85;
+}
+.hero h1{
+  font-family:'Cinzel',serif; font-weight:900; font-size:clamp(34px,6vw,58px);
+  margin:0; color:var(--gold-soft); text-shadow:0 2px 20px rgba(201,162,74,0.25);
+  letter-spacing:.01em;
+}
+.hero-sub{
+  max-width:640px; margin:22px auto 0; color:var(--muted); font-size:16.5px;
+}
+.hero-sub strong{color:var(--cream); font-weight:600;}
+.hero-rule{width:64px;height:3px;background:var(--red);margin:30px auto 0;border-radius:2px;}
+
+/* ---------- LAYOUT ---------- */
+.layout{display:flex; max-width:1240px; margin:0 auto; align-items:flex-start;}
+nav.toc{
+  width:270px; flex-shrink:0; position:sticky; top:0; align-self:flex-start;
+  max-height:100vh; overflow-y:auto; padding:40px 18px 40px 28px;
+}
+.toc-label{
+  font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.12em;
+  color:var(--dim); margin-bottom:14px; padding-left:14px;
+}
+a.nav-link{
+  display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--muted);
+  font-size:13.5px; padding:7px 14px; border-radius:7px; transition:background .15s, color .15s;
+}
+a.nav-link:hover{background:var(--panel); color:var(--cream);}
+.nav-num{
+  font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--gold);
+  width:18px; text-align:right; flex-shrink:0;
+}
+
+main{flex:1; min-width:0; max-width:var(--maxw); padding:56px 32px 100px; margin:0 auto;}
+
+/* ---------- TYPOGRAPHY ---------- */
+main h2{
+  font-family:'Cinzel',serif; font-weight:700; font-size:25px; color:var(--gold-soft);
+  margin:64px 0 6px; padding-top:8px; scroll-margin-top:24px;
+  display:flex; align-items:baseline; gap:12px;
+}
+main h2:first-of-type{margin-top:0;}
+main h3{
+  font-family:'Inter',sans-serif; font-weight:700; font-size:16.5px; color:var(--red-soft);
+  margin:34px 0 10px; scroll-margin-top:24px;
+}
+main p{color:#cfc9ba; font-size:15.5px; margin:14px 0;}
+main p strong{color:var(--cream);}
+main ul, main ol{color:#cfc9ba; font-size:15.5px; padding-left:22px;}
+main li{margin:6px 0;}
+main li strong{color:var(--cream);}
+main a{color:var(--gold);}
+main hr{border:none; border-top:1px solid var(--border); margin:44px 0;}
+
+/* ---------- CALLOUT (blockquote) ---------- */
+main blockquote{
+  margin:22px 0; padding:16px 20px; background:rgba(156,59,52,0.08);
+  border:1px solid rgba(156,59,52,0.35); border-radius:8px; color:#e2c9c5; font-size:14.5px;
+}
+main blockquote p{margin:0; color:#e2c9c5;}
+
+/* ---------- TABLES ---------- */
+.table-wrap{overflow-x:auto; margin:20px 0; border:1px solid var(--border); border-radius:10px;}
+table{width:100%; border-collapse:collapse; font-size:13.5px; min-width:480px;}
+thead tr{background:var(--panel2);}
+th{
+  text-align:left; padding:11px 16px; color:var(--gold-soft); font-weight:600;
+  border-bottom:1px solid var(--border); white-space:nowrap;
+}
+td{padding:10px 16px; border-bottom:1px solid var(--border); color:#cfc9ba;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:hover{background:var(--panel);}
+td strong{color:var(--gold-soft);}
+
+/* ---------- CODE ---------- */
+main code{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; background:var(--panel2);
+  color:var(--gold-soft); padding:2px 6px; border-radius:5px;
+}
+main pre{
+  background:#0a0b0d; border:1px solid var(--border); border-radius:8px; padding:18px 20px;
+  overflow-x:auto; font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#9fe6b0;
+  line-height:1.6;
+}
+main pre code{background:none; padding:0; color:inherit;}
+
+/* ---------- FOOTER ---------- */
+.footer{
+  text-align:center; padding:40px 24px 60px; color:var(--dim); font-size:12.5px;
+  border-top:1px solid var(--border); font-style:italic;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 860px){
+  .layout{flex-direction:column;}
+  nav.toc{
+    width:100%; position:static; max-height:none; overflow-x:auto; overflow-y:visible;
+    display:flex; gap:4px; padding:18px 16px; border-bottom:1px solid var(--border);
+    white-space:nowrap;
+  }
+  .toc-label{display:none;}
+  a.nav-link{flex-shrink:0;}
+  main{padding:40px 20px 80px;}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-eyebrow">DOCUMENTATION — VERSION HTML / CSS / JS</div>
+  <h1>Aux confins d'Athanor</h1>
+  <p class="hero-sub">Portage fidèle du RPG textuel écrit en <strong>Go</strong> vers une page <strong>HTML/CSS/JavaScript</strong> autonome, jouable directement dans un navigateur, sans installation ni serveur.</p>
+  <br>
+  <a href="jeu.html">1-lancer-le-jeu</a>
+  <div class="hero-rule"></div>
+</header>
+
+<div class="layout">
+  <nav class="toc">
+    <div class="toc-label">SOMMAIRE</div>
+    <a href="#1-lancer-le-jeu" class="nav-link"><span class="nav-num">1</span>Lancer le jeu</a>
+<a href="#2-presentation-generale" class="nav-link"><span class="nav-num">2</span>Présentation générale</a>
+<a href="#3-creation-du-personnage" class="nav-link"><span class="nav-num">3</span>Création du personnage</a>
+<a href="#4-statistiques-du-joueur" class="nav-link"><span class="nav-num">4</span>Statistiques du joueur</a>
+<a href="#5-carte-du-monde" class="nav-link"><span class="nav-num">5</span>Carte du monde</a>
+<a href="#6-systeme-de-combat" class="nav-link"><span class="nav-num">6</span>Système de combat</a>
+<a href="#7-table-des-monstres" class="nav-link"><span class="nav-num">7</span>Table des monstres</a>
+<a href="#8-les-boss" class="nav-link"><span class="nav-num">8</span>Les boss</a>
+<a href="#9-le-village-et-ses-services" class="nav-link"><span class="nav-num">9</span>Le Village et ses services</a>
+<a href="#10-inventaire-et-equipement" class="nav-link"><span class="nav-num">10</span>Inventaire et équipement</a>
+<a href="#11-la-forge-et-les-recettes" class="nav-link"><span class="nav-num">11</span>La Forge et les recettes</a>
+<a href="#12-le-shop" class="nav-link"><span class="nav-num">12</span>Le Shop</a>
+<a href="#13-lauberge" class="nav-link"><span class="nav-num">13</span>L'Auberge</a>
+<a href="#14-la-sorciere-du-marais" class="nav-link"><span class="nav-num">14</span>La Sorcière du Marais</a>
+<a href="#15-le-labyrinthe-de-la-mine" class="nav-link"><span class="nav-num">15</span>Le Labyrinthe de la Mine</a>
+<a href="#16-la-bibliotheque" class="nav-link"><span class="nav-num">16</span>La Bibliothèque</a>
+<a href="#17-systeme-de-niveaux-et-titres" class="nav-link"><span class="nav-num">17</span>Système de niveaux et titres</a>
+<a href="#18-victoire-defaite-et-game-over" class="nav-link"><span class="nav-num">18</span>Victoire, défaite et game over</a>
+<a href="#19-structure-technique-du-fichier" class="nav-link"><span class="nav-num">19</span>Structure technique du fichier</a>
+<a href="#20-differences-avec-la-version-go-originale" class="nav-link"><span class="nav-num">20</span>Différences avec la version Go originale</a>
+<a href="#21-limitations-connues" class="nav-link"><span class="nav-num">21</span>Limitations connues</a>
+<a href="#22-pistes-damelioration" class="nav-link"><span class="nav-num">22</span>Pistes d'amélioration</a>
+
+  </nav>
+  <main>
+    <h2 id="1-lancer-le-jeu">1. Lancer le jeu</h2>
+<p>Le jeu tient dans un <strong>unique fichier autonome</strong> : <code>athanor.html</code>.</p>
+<ul>
+<li>Aucune installation, aucune dépendance, aucun serveur requis.</li>
+<li>Double-cliquez sur le fichier ou ouvrez-le avec <code>Ctrl+O</code> / <code>Cmd+O</code> dans n'importe quel navigateur moderne (Chrome, Firefox, Safari, Edge).</li>
+<li>Le jeu démarre immédiatement sur l'écran de création de personnage.</li>
+<li><strong>Aucune sauvegarde</strong> : recharger la page relance une nouvelle partie depuis le début (voir <a href="#21-limitations-connues">§21</a>).</li>
+</ul>
+<hr />
+<h2 id="2-presentation-generale">2. Présentation générale</h2>
+<p>"Aux confins d'Athanor" est un RPG textuel à choix multiples, entièrement piloté par des boutons (l'équivalent des menus numérotés du programme Go original, adaptés à une interface cliquable). Le joueur :</p>
+<ul>
+<li>crée un personnage (nom, race, classe) ;</li>
+<li>explore un monde de 8 zones interconnectées autour d'un Village central ;</li>
+<li>affronte des monstres propres à chaque zone dans un système de combat au tour par tour ;</li>
+<li>gagne de l'expérience, monte de niveau, récolte des ressources ;</li>
+<li>fabrique des armes et armures à la Forge, achète et vend au Shop ;</li>
+<li>peut affronter deux boss cachés (le Tableau maudit et Valenkor le Revenant) ;</li>
+<li>peut se divertir (et perdre de l'argent, ou pire) à l'Auberge ;</li>
+<li>peut consulter une Bibliothèque contenant le lore complet du monde.</li>
+</ul>
+<p>L'interface reprend l'esprit "console" du jeu d'origine : un bandeau de statistiques toujours visible en haut de l'écran, un journal de texte coloré (façon terminal ANSI), et des boutons de choix remplaçant la saisie clavier.</p>
+<hr />
+<h2 id="3-creation-du-personnage">3. Création du personnage</h2>
+<p>Au lancement, trois informations sont demandées successivement :</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Étape</th>
+<th>Détail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Nom</strong></td>
+<td>Libre. Si vide, "Aventurier" est utilisé par défaut.</td>
+</tr>
+<tr>
+<td><strong>Race</strong></td>
+<td><code>Humain</code>, <code>Elf</code>, <code>Orc</code> ou <code>Slime</code> (la première lettre seule est aussi acceptée : h/e/o/s).</td>
+</tr>
+<tr>
+<td><strong>Classe</strong></td>
+<td><code>Guerrier</code>, <code>Mage</code> ou <code>Archer</code> (première lettre acceptée : g/m/a).</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les valeurs de race et de classe ne sont pas sensibles à la casse. Une race ou classe non reconnue applique des valeurs par défaut neutres (l'écran vous prévient dans ce cas).</p>
+<h3 id="bonus-par-race">Bonus par race</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Race</th>
+<th>Santé</th>
+<th>Endurance</th>
+<th>Défense</th>
+<th>Attaque de base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Humain</td>
+<td>100</td>
+<td>60</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Elf</td>
+<td>20</td>
+<td>65</td>
+<td>3</td>
+<td>10</td>
+</tr>
+<tr>
+<td>Orc</td>
+<td>100</td>
+<td>50</td>
+<td>6</td>
+<td>14</td>
+</tr>
+<tr>
+<td>Slime</td>
+<td>50</td>
+<td>25</td>
+<td>1</td>
+<td>5</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="bonus-par-classe">Bonus par classe</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Classe</th>
+<th>Santé</th>
+<th>Endurance</th>
+<th>Défense</th>
+<th>Dégâts bonus</th>
+<th>Arme de départ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mage</td>
+<td>+0</td>
+<td>+25</td>
+<td>+0</td>
+<td>+0</td>
+<td>Mains</td>
+</tr>
+<tr>
+<td>Guerrier</td>
+<td>+10</td>
+<td>+5</td>
+<td>+3</td>
+<td>+5</td>
+<td>Épée en bois</td>
+</tr>
+<tr>
+<td>Archer</td>
+<td>+20</td>
+<td>+5</td>
+<td>+0</td>
+<td>+2</td>
+<td>Lance pierre</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les stats finales du personnage sont la somme race + classe. L'arme de départ est automatiquement ajoutée à l'inventaire et équipée.</p>
+<hr />
+<h2 id="4-statistiques-du-joueur">4. Statistiques du joueur</h2>
+<p>Affichées en permanence dans le bandeau supérieur :</p>
+<ul>
+<li><strong>Nom</strong> — identifiant du personnage</li>
+<li><strong>Race / Classe</strong> — affichage combiné</li>
+<li><strong>Niveau</strong> et <strong>Titre</strong> (voir <a href="#17-système-de-niveaux-et-titres">§17</a>)</li>
+<li><strong>HP</strong> — points de vie (recalculés à chaque combat, voir plus bas)</li>
+<li><strong>Endurance</strong> — jauge consommée par les attaques en combat</li>
+<li><strong>Attaque</strong> — statistique de base utilisée dans les formules de dégâts</li>
+<li><strong>Or</strong> — monnaie du jeu</li>
+<li><strong>Exp</strong> — expérience actuelle / expérience requise pour le prochain niveau</li>
+</ul>
+<blockquote>
+<p>Comme dans la version Go, la Santé et l'Endurance ne sont <strong>pas persistantes entre deux combats</strong> : chaque combat démarre avec la valeur "maximale" actuelle du joueur. Seules deux choses réduisent ces valeurs de façon durable : perdre un combat (perte d'un niveau) et boire la potion magique de l'Auberge (perte permanente d'1 PV).</p>
+</blockquote>
+<hr />
+<h2 id="5-carte-du-monde">5. Carte du monde</h2>
+<p>Le monde est composé de 8 lieux formant un anneau, avec le Village comme unique point d'accès central :</p>
+<pre><code>+---------+   +---------+   +---------+
+|  MINE   |&lt;-&gt;| VILLAGE |&lt;-&gt;|  FORÊT  |
++---------+   +---------+   +---------+
+     ^                            ^
+     v                            v
++---------+                  +---------+
+| PLAINE  |                  |   LAC   |
++---------+                  +---------+
+     ^                            ^
+     v                            v
++---------+   +---------+   +---------+
+|MONTAGNE |&lt;-&gt;| CHÂTEAU |&lt;-&gt;| MARAIS  |
++---------+   +---------+   +---------+
+</code></pre>
+<p>Un bouton <strong>"🗺 Voir la carte"</strong> est disponible depuis presque tous les écrans principaux (Village, chaque zone d'exploration, Shop, Forge, Auberge, Bibliothèque, cabane de la Sorcière) et affiche une illustration complète de la carte. Fermer la carte ramène <strong>exactement à l'écran d'où elle a été ouverte</strong> — jamais au Village par défaut.</p>
+<h3 id="regle-dacces-au-village">Règle d'accès au Village</h3>
+<p>Conformément au comportement du jeu original, <strong>le Village n'est directement accessible que depuis la Forêt et la Mine</strong>. Depuis la Plaine, la Montagne, le Lac, le Château ou le Marais, il faut repasser par les zones voisines pour rejoindre le Village — il n'y a pas de raccourci "retour au village" générique.</p>
+<h3 id="table-de-navigation-complete">Table de navigation complète</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>Monstres</th>
+<th>Connexions</th>
+<th>Particularité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Village</strong></td>
+<td>—</td>
+<td>Forêt, Mine</td>
+<td>Shop, Forge, Bibliothèque, Auberge, Inventaire</td>
+</tr>
+<tr>
+<td><strong>Forêt</strong></td>
+<td>Loup, Nain de jardin</td>
+<td>Village, Lac</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Mine</strong></td>
+<td>Canari, Gobelin</td>
+<td>Plaine, Village</td>
+<td>Labyrinthe des galeries</td>
+</tr>
+<tr>
+<td><strong>Plaine</strong></td>
+<td>Steve, René (la taupe)</td>
+<td>Montagne, Mine</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Montagne</strong></td>
+<td>Ours, Sherpa</td>
+<td>Plaine, Château</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Lac</strong></td>
+<td>Poisson rouge, Sirène</td>
+<td>Marais, Forêt</td>
+<td>Boss caché : Valenkor</td>
+</tr>
+<tr>
+<td><strong>Château</strong></td>
+<td>Gargouille, Chevalier</td>
+<td>Montagne, Marais</td>
+<td>Boss : Tableau de la Joconde</td>
+</tr>
+<tr>
+<td><strong>Marais</strong></td>
+<td>Chat noir, Liche</td>
+<td>Lac, Château</td>
+<td>Cabane de la Sorcière</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="6-systeme-de-combat">6. Système de combat</h2>
+<p>Le combat est <strong>au tour par tour</strong>, entièrement automatique côté monstre.</p>
+<h3 id="deroulement-dun-tour">Déroulement d'un tour</h3>
+<ol>
+<li>Le joueur choisit une action parmi ses <strong>3 attaques de classe</strong> ou l'utilisation d'une <strong>potion</strong>.</li>
+<li>Si l'endurance est insuffisante pour l'attaque choisie, un <strong>"Coup de poing"</strong> de secours est automatiquement utilisé à la place (dégâts égaux à l'attaque brute, coût nul).</li>
+<li>Il y a <strong>10% de chance de coup critique</strong>, qui double les dégâts infligés.</li>
+<li>Une <strong>Potion de Force</strong> active, si utilisée au tour précédent, double également les dégâts du prochain coup porté.</li>
+<li>Le monstre riposte automatiquement avec son attaque nommée (ex. "Griffure", "Morsure"...), sauf s'il vient d'être achevé.</li>
+<li>Le combat se termine dès que l'un des deux camps atteint 0 PV ou moins.</li>
+</ol>
+<h3 id="attaques-par-classe">Attaques par classe</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Classe</th>
+<th>Attaque 1</th>
+<th>Attaque 2</th>
+<th>Attaque 3 (repli)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mage</strong></td>
+<td>Boule de feu (×2 ATK, 25 endu)</td>
+<td>Coup de baguette (×1 ATK, 8 endu)</td>
+<td>Coup de pieds (×1.1 ATK, 5 endu)</td>
+</tr>
+<tr>
+<td><strong>Guerrier</strong></td>
+<td>Coup d'épée (×1.6 ATK, 18 endu)</td>
+<td>Lancer de poussière (×1.1 ATK, 10 endu)</td>
+<td>Coup de poing (×1 ATK, 0 endu)</td>
+</tr>
+<tr>
+<td><strong>Archer</strong></td>
+<td>Tir (×1.5 ATK, 15 endu)</td>
+<td>Lancer de projectile (×1.3 ATK, 12 endu)</td>
+<td>Coup de pieds (×1.1 ATK, 5 endu)</td>
+</tr>
+</tbody>
+</table></div>
+<p><code>ATK</code> correspond à l'attaque de base du joueur <strong>+ le bonus de l'arme équipée</strong> (voir tableau des armes ci-dessous).</p>
+<h3 id="bonus-de-degats-par-arme-equipee">Bonus de dégâts par arme équipée</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Arme</th>
+<th>Bonus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mains / Épée en bois / Lance pierre</td>
+<td>+1</td>
+</tr>
+<tr>
+<td>Épée en fer</td>
+<td>+5</td>
+</tr>
+<tr>
+<td>Baguette magique</td>
+<td>+5</td>
+</tr>
+<tr>
+<td>Arc en bois</td>
+<td>+5</td>
+</tr>
+<tr>
+<td>Épée en fer améliorée</td>
+<td>+10</td>
+</tr>
+<tr>
+<td>Bâton de sorcier</td>
+<td>+10</td>
+</tr>
+<tr>
+<td>Arc en bambou</td>
+<td>+10</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="bonus-de-points-de-vie-par-armure-equipee-pool-de-combat-uniquement">Bonus de points de vie par armure équipée (pool de combat uniquement)</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Armure</th>
+<th>PV additionnels en combat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Armure en cuir</td>
+<td>+50</td>
+</tr>
+<tr>
+<td>Armure en fer</td>
+<td>+100</td>
+</tr>
+<tr>
+<td>Armure en fer améliorée</td>
+<td>+200</td>
+</tr>
+<tr>
+<td>Armure magique</td>
+<td>+350</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="potions-utilisables-en-combat">Potions utilisables en combat</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Potion</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Potion de Soin</strong></td>
+<td>Restaure 50 % des PV maximum du pool de combat actuel</td>
+</tr>
+<tr>
+<td><strong>Potion de Dégat</strong></td>
+<td>Inflige immédiatement <code>2 × Attaque du joueur</code> dégâts au monstre</td>
+</tr>
+<tr>
+<td><strong>Potion de Force</strong></td>
+<td>Double les dégâts de la <strong>prochaine</strong> attaque portée</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les potions doivent être achetées au préalable auprès de la Sorcière (<a href="#14-la-sorcière-du-marais">§14</a>) et sont consommées à l'usage.</p>
+<hr />
+<h2 id="7-table-des-monstres">7. Table des monstres</h2>
+<p>Chaque monstre possède des statistiques calculées selon <strong>3 paliers de niveau du joueur</strong> : niveau ≤ 10, niveau 11–25, niveau &gt; 25. Plus le joueur progresse, plus les monstres (même ceux des premières zones) deviennent redoutables — il n'y a pas de plafond.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Monstre</th>
+<th>Zone</th>
+<th>Butin</th>
+<th>Attaque nommée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loup</td>
+<td>Forêt</td>
+<td>Bois</td>
+<td>Hurlement</td>
+</tr>
+<tr>
+<td>Nain de jardin</td>
+<td>Forêt</td>
+<td>Bambou</td>
+<td>Coup de chapeau</td>
+</tr>
+<tr>
+<td>Canari</td>
+<td>Mine</td>
+<td>Ficelle</td>
+<td>Piou Piou</td>
+</tr>
+<tr>
+<td>Gobelin</td>
+<td>Mine</td>
+<td>Fer</td>
+<td>Morsure</td>
+</tr>
+<tr>
+<td>Steve</td>
+<td>Plaine</td>
+<td>Bois</td>
+<td>PvP Cristal</td>
+</tr>
+<tr>
+<td>René (la taupe)</td>
+<td>Plaine</td>
+<td>Bambou</td>
+<td>Piétisol</td>
+</tr>
+<tr>
+<td>Ours</td>
+<td>Montagne</td>
+<td>Cuir</td>
+<td>Griffure</td>
+</tr>
+<tr>
+<td>Sherpa</td>
+<td>Montagne</td>
+<td>Bois</td>
+<td>Coup de piolet</td>
+</tr>
+<tr>
+<td>Poisson rouge</td>
+<td>Lac</td>
+<td>Cuir</td>
+<td>Trempette</td>
+</tr>
+<tr>
+<td>Sirène</td>
+<td>Lac</td>
+<td>Ficelle</td>
+<td>Chant envoûtant</td>
+</tr>
+<tr>
+<td>Gargouille</td>
+<td>Château</td>
+<td>Bambou</td>
+<td>Cracher de poison</td>
+</tr>
+<tr>
+<td>Chevalier</td>
+<td>Château</td>
+<td>Fer</td>
+<td>Coup d'épée</td>
+</tr>
+<tr>
+<td>Chat noir</td>
+<td>Marais</td>
+<td>Cuir</td>
+<td>Coup de Griffe</td>
+</tr>
+<tr>
+<td>Liche</td>
+<td>Marais</td>
+<td>Ficelle</td>
+<td>Laser Mortel</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="formules-de-calcul-fideles-au-code-source">Formules de calcul (fidèles au code source)</h3>
+<p>Les monstres se répartissent en deux familles de formules selon leur "poids" (légers/lourds), avec un facteur <code>k</code> dépendant du niveau du joueur et du palier :</p>
+<ul>
+<li><strong>Palier 1</strong> (niveau ≤ 10) : <code>k = niveau − 1</code></li>
+<li><strong>Palier 2</strong> (niveau 11–25) : <code>k = niveau − 10</code> (exception : la Liche utilise <code>niveau − 1</code> pour son attaque, fidèle à une particularité du code d'origine)</li>
+<li><strong>Palier 3</strong> (niveau &gt; 25) : <code>k = niveau − 25</code></li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Famille</th>
+<th>PV (palier 1 / 2 / 3)</th>
+<th>Attaque (palier 1 / 2 / 3)</th>
+<th>Exp (palier 1 / 2 / 3)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Lourds</strong> (Ours, Gobelin, Sirène, Nain de jardin, Steve, Gargouille, Liche)</td>
+<td>55+21k / 240+157k / 2600+8296k</td>
+<td>12+4k / 45+25k / 420+643k</td>
+<td>30+24k / 250+26k / 640+14k</td>
+</tr>
+<tr>
+<td><strong>Légers</strong> (Sherpa, Canari, Poisson rouge, Loup, René, Chat noir, Chevalier)</td>
+<td>30+10k / 130+85k / 1400+4384k</td>
+<td>6+2k / 25+14k / 230+351k</td>
+<td>15+12k / 120+22k / 450+10k</td>
+</tr>
+</tbody>
+</table></div>
+<p>(Chevalier et Liche présentent de légères variantes d'attaque au palier 2, reprises telles quelles du code Go original.)</p>
+<hr />
+<h2 id="8-les-boss">8. Les boss</h2>
+<p>Deux affrontements optionnels et redoutables, avec des statistiques <strong>fixes par palier</strong> (non calculées par formule) :</p>
+<h3 id="le-tableau-de-la-joconde-chateau">Le Tableau de la Joconde (Château)</h3>
+<p>Accessible directement depuis le menu du Château (option "Affronter le Boss").</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Palier</th>
+<th>PV</th>
+<th>Attaque</th>
+<th>Exp gagnée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≤ 10</td>
+<td>400</td>
+<td>60</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>11–25</td>
+<td>4500</td>
+<td>700</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>&gt; 25</td>
+<td>350 000</td>
+<td>28 000</td>
+<td>5000</td>
+</tr>
+</tbody>
+</table></div>
+<p>Butin : <strong>Crystal de niveau 1</strong>. Attaque nommée : <em>"Turbo Laser Mortel De La Mort Qui Tue"</em>.</p>
+<h3 id="valenkor-le-revenant-des-abimes-lac">Valenkor, le Revenant des Abîmes (Lac)</h3>
+<p>Boss <strong>secret</strong> : au bord du Lac, une option permet de "murmurer un nom". Il faut taper <strong>"Valenkor"</strong> pour déclencher une courte cinématique menant au combat.</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Palier</th>
+<th>PV</th>
+<th>Attaque</th>
+<th>Exp gagnée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≤ 10</td>
+<td>450</td>
+<td>80</td>
+<td>500</td>
+</tr>
+<tr>
+<td>11–25</td>
+<td>5000</td>
+<td>780</td>
+<td>5000</td>
+</tr>
+<tr>
+<td>&gt; 25</td>
+<td>420 000</td>
+<td>32 000</td>
+<td>65 000</td>
+</tr>
+</tbody>
+</table></div>
+<p>Butin : <strong>Crystal de niveau 2</strong>. Attaque nommée : <em>"Attaque Qui Fait Mal"</em>.</p>
+<h3 id="mecanique-speciale-des-combats-de-boss">Mécanique spéciale des combats de boss</h3>
+<p>Les deux boss démarrent le combat avec une <strong>attaque réduite de moitié</strong>. Dès que leurs PV descendent à 50 % ou moins de leur total, ils <strong>retrouvent leur pleine puissance d'attaque</strong> — un message d'avertissement s'affiche à ce moment précis. C'est le seul moment du jeu où la puissance d'un ennemi évolue en cours de combat.</p>
+<hr />
+<h2 id="9-le-village-et-ses-services">9. Le Village et ses services</h2>
+<p>Point de départ et unique zone "sûre" (aucun monstre) directement reliée à 6 services :</p>
+<ul>
+<li><strong>🛒 Shop</strong> — achat/vente de ressources</li>
+<li><strong>🔨 Forge</strong> — fabrication d'armes et armures</li>
+<li><strong>📚 Bibliothèque</strong> — lore et documentation en jeu</li>
+<li><strong>🍺 Auberge</strong> — mini-jeux d'argent</li>
+<li><strong>🎒 Inventaire</strong> — gestion des objets et de l'équipement</li>
+<li><strong>🌲 Forêt</strong> / <strong>⛏ Mine</strong> — accès direct à l'exploration</li>
+<li><strong>🗺 Carte</strong> — vue d'ensemble du monde</li>
+</ul>
+<hr />
+<h2 id="10-inventaire-et-equipement">10. Inventaire et équipement</h2>
+<ul>
+<li><strong>30 emplacements</strong> au total.</li>
+<li>Les <strong>ressources</strong> (Bois, Cuir, Ficelle, Bambou, Fer, Crystaux, Potions) s'empilent jusqu'à <strong>30 unités par emplacement</strong>, en répartissant l'excédent sur de nouveaux emplacements si nécessaire.</li>
+<li>Les <strong>armes</strong> et <strong>armures</strong> sont uniques : chacune occupe un emplacement entier (pas d'empilement).</li>
+<li>Équiper un objet se fait en indiquant son numéro d'emplacement (0 à 29) ; l'objet précédemment équipé retourne automatiquement dans l'inventaire, à la place laissée libre.</li>
+<li>L'écran d'inventaire affiche une grille 6×5 de tous les emplacements, ainsi que l'arme et l'armure actuellement portées.</li>
+</ul>
+<hr />
+<h2 id="11-la-forge-et-les-recettes">11. La Forge et les recettes</h2>
+<p>La Forge permet de fabriquer 10 objets à partir de ressources récoltées ou achetées :</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Objet</th>
+<th>Catégorie</th>
+<th>Ingrédients requis</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Armure en cuir</td>
+<td>Armure</td>
+<td>15 Cuir, 5 Ficelle</td>
+</tr>
+<tr>
+<td>Armure en fer</td>
+<td>Armure</td>
+<td>20 Fer</td>
+</tr>
+<tr>
+<td>Armure en fer améliorée</td>
+<td>Armure</td>
+<td>20 Fer, 5 Crystal de niveau 1</td>
+</tr>
+<tr>
+<td>Armure magique</td>
+<td>Armure</td>
+<td>30 Fer, 5 Crystal de niveau 1, 5 Crystal de niveau 2</td>
+</tr>
+<tr>
+<td>Epée en fer</td>
+<td>Arme</td>
+<td>6 Fer, 2 Bois</td>
+</tr>
+<tr>
+<td>Epée en fer améliorée</td>
+<td>Arme</td>
+<td>8 Fer, 2 Bois, 1 Crystal de niveau 2</td>
+</tr>
+<tr>
+<td>Baguette magique</td>
+<td>Arme</td>
+<td>2 Bois, 1 Crystal de niveau 1</td>
+</tr>
+<tr>
+<td>Bâton de sorcier</td>
+<td>Arme</td>
+<td>6 Bois, 4 Bambou, 3 Crystal de niveau 1</td>
+</tr>
+<tr>
+<td>Arc en bois</td>
+<td>Arme</td>
+<td>6 Bois, 4 Ficelle</td>
+</tr>
+<tr>
+<td>Arc en bambou</td>
+<td>Arme</td>
+<td>10 Bambou, 5 Ficelle</td>
+</tr>
+</tbody>
+</table></div>
+<p>L'écran de craft affiche, pour chaque recette, la quantité possédée à côté de la quantité requise. Si un ingrédient manque, la fabrication échoue et un message l'indique clairement ; sinon, les ressources sont consommées et l'objet rejoint directement l'inventaire.</p>
+<hr />
+<h2 id="12-le-shop">12. Le Shop</h2>
+<p>Deux zones distinctes, avec des prix d'achat toujours supérieurs aux prix de vente (marge du marchand) :</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Ressource</th>
+<th>Prix d'achat</th>
+<th>Prix de vente</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bois</td>
+<td>2</td>
+<td>1</td>
+</tr>
+<tr>
+<td>Cuir</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Ficelle</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Bambou</td>
+<td>5</td>
+<td>4</td>
+</tr>
+<tr>
+<td>Fer</td>
+<td>6</td>
+<td>5</td>
+</tr>
+<tr>
+<td>Crystal de niveau 1</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Crystal de niveau 2</td>
+<td>9</td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+<p>L'achat et la vente se font par quantité libre, saisie manuellement ; le jeu vérifie l'or disponible (achat) ou la quantité possédée (vente) avant de valider la transaction.</p>
+<hr />
+<h2 id="13-lauberge">13. L'Auberge</h2>
+<p>Deux activités, purement optionnelles et à risque :</p>
+<h3 id="pile-ou-face">Pile ou face</h3>
+<ul>
+<li>Le joueur mise une quantité d'or de son choix (0 pour quitter).</li>
+<li>Il annonce "pile" ou "face".</li>
+<li>Une pièce virtuelle est tirée aléatoirement (50/50) : bonne réponse = mise doublée (gain net égal à la mise), mauvaise réponse = mise perdue.</li>
+</ul>
+<h3 id="potion-magique-roulette-russe">Potion magique (roulette russe)</h3>
+<ul>
+<li>Coûte <strong>5 pièces d'or</strong> par gorgée.</li>
+<li>Chaque gorgée retire <strong>1 point de vie maximum de façon définitive</strong> (persistant, contrairement aux dégâts de combat classiques).</li>
+<li>Si les PV maximum du joueur tombent à 0, c'est un <strong>game over immédiat</strong>.</li>
+<li>Il n'y a aucune limite au nombre de gorgées que l'on peut boire — chaque tentative est un pari sur sa propre vie.</li>
+</ul>
+<hr />
+<h2 id="14-la-sorciere-du-marais">14. La Sorcière du Marais</h2>
+<p>Accessible uniquement depuis la zone <strong>Marais</strong>, elle vend trois potions consommables <strong>exclusivement utilisables en combat</strong> :</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Potion</th>
+<th>Prix</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Potion de Soin</td>
+<td>8 pièces</td>
+</tr>
+<tr>
+<td>Potion de Dégat</td>
+<td>12 pièces</td>
+</tr>
+<tr>
+<td>Potion de Force</td>
+<td>9 pièces</td>
+</tr>
+</tbody>
+</table></div>
+<p>Les achats se font par quantité libre, avec vérification de l'or disponible et de la place en inventaire.</p>
+<hr />
+<h2 id="15-le-labyrinthe-de-la-mine">15. Le Labyrinthe de la Mine</h2>
+<p>Mini-aventure textuelle à embranchements, accessible depuis la Mine ("Explorer les galeries sombres"). Le joueur navigue entre plusieurs "salles" :</p>
+<ul>
+<li>Un carrefour initial menant soit à une galerie de champignons luisants (rat des cavernes, sans conséquence grave), soit à une ancienne salle de triage avec un chariot.</li>
+<li>Le chariot peut être utilisé pour dévaler une pente (fin comique, sans danger) ou laissé de côté pour explorer de vieilles caisses.</li>
+<li>Les caisses cachent une <strong>récompense</strong> : +15 pièces d'or et +1 Potion de Soin ajoutées directement à l'inventaire.</li>
+<li>À tout moment, il est possible de rebrousser chemin vers l'entrée de la Mine.</li>
+</ul>
+<p>Aucun combat n'a lieu dans le labyrinthe : c'est une zone purement narrative et exploratoire.</p>
+<hr />
+<h2 id="16-la-bibliotheque">16. La Bibliothèque</h2>
+<p>Accessible depuis le Village, elle contient <strong>6 volumes</strong> de lore et de documentation interne :</p>
+<ol>
+<li><strong>Volume 1 — Les lieux et les monstres</strong> : sous-menu avec un chapitre dédié à chacune des 8 zones (Village, Forêt, Montagne, Mine, Lac, Marais, Plaines, Château), décrivant les monstres qu'on y rencontre.</li>
+<li><strong>Volume 2 — Les armes et armures</strong> : bonus détaillés de chaque équipement.</li>
+<li><strong>Volume 3 — La forge et le shop</strong> : explication du fonctionnement économique du jeu.</li>
+<li><strong>Volume 4 — Les classes et les races</strong> : résumé des bonus de chaque race et classe.</li>
+<li><strong>Volume 5 — La sorcière</strong> : indices sur son emplacement et ses services.</li>
+<li><strong>Volume 6 — La tragédie de Valenkor</strong> : le récit complet de la légende du boss caché du Lac — son passé de protecteur trahi, sa malédiction, et comment le rencontrer.</li>
+</ol>
+<hr />
+<h2 id="17-systeme-de-niveaux-et-titres">17. Système de niveaux et titres</h2>
+<p>L'expérience requise pour passer du niveau <code>n</code> au niveau <code>n+1</code> suit la formule :</p>
+<pre><code>exp_requise(n) = 10 + 80 × (n − 1)
+</code></pre>
+<p>À chaque niveau gagné :</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Niveau</th>
+<th>Bonus Attaque</th>
+<th>Bonus PV</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≤ 10</td>
+<td>+3</td>
+<td>+15</td>
+</tr>
+<tr>
+<td>11–25</td>
+<td>+7</td>
+<td>+30</td>
+</tr>
+<tr>
+<td>&gt; 25</td>
+<td>+30</td>
+<td>+100</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="titres-associes-au-niveau">Titres associés au niveau</h3>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Niveau</th>
+<th>Titre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1–10</td>
+<td>Débutant</td>
+</tr>
+<tr>
+<td>11–20</td>
+<td>Novice</td>
+</tr>
+<tr>
+<td>21–30</td>
+<td>Vétéran</td>
+</tr>
+<tr>
+<td>31–40</td>
+<td>Pro</td>
+</tr>
+<tr>
+<td>41–50</td>
+<td>Master Pro</td>
+</tr>
+<tr>
+<td>51+</td>
+<td>Master Pro ++</td>
+</tr>
+</tbody>
+</table></div>
+<p>L'expérience excédentaire après un passage de niveau est conservée (pas de perte), et plusieurs niveaux peuvent être gagnés d'un seul coup si le gain d'expérience est suffisant.</p>
+<hr />
+<h2 id="18-victoire-defaite-et-game-over">18. Victoire, défaite et game over</h2>
+<ul>
+<li><strong>Victoire</strong> : le monstre est vaincu, l'expérience et le butin sont attribués, un ou plusieurs niveaux peuvent être gagnés.</li>
+<li><strong>Défaite en combat classique</strong> : le joueur <strong>perd 1 niveau</strong> et revient au Village. Si le niveau descend sous 0, c'est un game over.</li>
+<li><strong>Défaite fatale</strong> (niveau négatif, ou 0 PV max via la potion magique) : écran de fin définitif — la seule option restante est de recommencer une toute nouvelle partie depuis la création de personnage.</li>
+</ul>
+<hr />
+<h2 id="19-structure-technique-du-fichier">19. Structure technique du fichier</h2>
+<ul>
+<li><strong>Un seul fichier HTML autonome</strong> (<code>athanor.html</code>), sans dépendance externe, sans requête réseau.</li>
+<li><strong>CSS</strong> : thème sombre façon terminal, variables de couleurs reprenant approximativement la palette ANSI utilisée dans la version console (rouge, orange, jaune, vert, bleu, violet, rose, cyan, gris).</li>
+<li><strong>JavaScript</strong> (vanilla, aucune librairie) organisé en sections :</li>
+<li>Données constantes (races, classes, armes, armures, recettes, prix, table des monstres, boss, lieux)</li>
+<li>État global du joueur et de l'inventaire</li>
+<li>Fonctions de rendu (bandeau de stats, journal, boutons de choix)</li>
+<li>Écrans/fonctions dédiées à chaque zone et chaque service (<code>screenVillage</code>, <code>screenLieu</code>, <code>screenShop</code>, <code>screenForge</code>, <code>screenAuberge</code>, <code>screenWitch</code>, <code>screenBiblio</code>, etc.)</li>
+<li>Moteur de combat (<code>startFight</code>, <code>renderFight</code>, <code>doAttaque</code>, <code>resolveFight</code>...)</li>
+<li>La navigation fonctionne entièrement par <strong>changement d'état + re-rendu</strong>, sans rechargement de page ni framework.</li>
+<li>L'image de la carte du monde est encodée en <strong>base64</strong> directement dans le fichier (aucune ressource externe à charger).</li>
+</ul>
+<hr />
+<h2 id="20-differences-avec-la-version-go-originale">20. Différences avec la version Go originale</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>Version Go (console)</th>
+<th>Version HTML/CSS/JS</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interface</td>
+<td>Texte + saisie clavier (<code>readline</code>)</td>
+<td>Boutons cliquables + champs de saisie ponctuels</td>
+</tr>
+<tr>
+<td>Son</td>
+<td>Fichiers <code>.mp3</code> d'ambiance</td>
+<td>Absent (non portable dans ce contexte)</td>
+</tr>
+<tr>
+<td>ASCII art</td>
+<td>Grands blocs ASCII dessinés en console</td>
+<td>Simplifié, remplacé en partie par l'illustration de carte</td>
+</tr>
+<tr>
+<td>Carte du monde</td>
+<td>Schéma ASCII</td>
+<td>Image dédiée, accessible depuis (presque) tout écran</td>
+</tr>
+<tr>
+<td>Sauvegarde</td>
+<td>Aucune (comme l'original)</td>
+<td>Aucune (identique)</td>
+</tr>
+<tr>
+<td>Bug de l'Elf (1 PV)</td>
+<td>Présent dans le code source</td>
+<td>Conservé à l'identique, par souci de fidélité</td>
+</tr>
+</tbody>
+</table></div>
+<p>Toutes les formules de statistiques, tous les prix, toutes les recettes, la structure du monde, les mécaniques de combat et les textes de la bibliothèque ont été repris <strong>directement depuis le code source Go</strong>, sans réinterprétation.</p>
+<hr />
+<h2 id="21-limitations-connues">21. Limitations connues</h2>
+<ul>
+<li><strong>Pas de sauvegarde</strong> : fermer ou recharger la page réinitialise entièrement la partie (fidèle à l'original, qui ne sauvegardait pas non plus entre les sessions).</li>
+<li><strong>Pas de son ni de musique.</strong></li>
+<li>Le jeu est conçu pour un usage <strong>mono-joueur, local, dans un seul onglet</strong>.</li>
+<li>Certaines saisies de texte libre (nom du personnage, quantités d'achat/vente) ne sont pas strictement validées au-delà des vérifications de base (nombre positif, ressources suffisantes).</li>
+</ul>
+<hr />
+<h2 id="22-pistes-damelioration">22. Pistes d'amélioration</h2>
+<ul>
+<li>Ajout d'une sauvegarde locale (ex. <code>localStorage</code>) pour reprendre une partie en cours.</li>
+<li>Ajout d'effets sonores et musiques d'ambiance par zone.</li>
+<li>Animations de combat (barres de vie animées, flash de dégâts).</li>
+<li>Extension du monde (nouvelles zones, nouveaux monstres, nouveaux boss).</li>
+<li>Ajout des easter eggs et codes secrets du Village présents dans certaines versions du jeu Go (bonus/malus d'or selon des noms tapés).</li>
+</ul>
+<hr />
+<p><em>Ce document décrit fidèlement le comportement du fichier <code>athanor.html</code> au moment de sa rédaction. Toute modification ultérieure du jeu peut nécessiter une mise à jour de ce README.</em></p>
+  </main>
+</div>
+
+</body>
+</html>
