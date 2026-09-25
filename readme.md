@@ -19,7 +19,6 @@
   <img src="carte-athanor.jpg" alt="Carte du monde d'Athanor" width="720">
 </p>
 
-> 📁 **Pense-bête pour GitHub :** place le fichier `carte-athanor.jpg` à la racine du dépôt (ou adapte le chemin ci-dessus) pour que l'image de la carte s'affiche correctement dans ce README.
 
 ---
 
