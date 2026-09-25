@@ -411,7 +411,7 @@ function screenLieu(key){
   if(L.labyrinth) choices.push(["🕳 Explorer les galeries sombres", ()=>screenLabyrinthe(key)]);
   if(L.witch) choices.push(["🧙 Aller à la cabane de la sorcière", ()=>screenWitch(key)]);
   if(L.boss) choices.push(["💀 [!] Affronter le Boss [!]", ()=>startFight(L.boss, key, true), "danger"]);
-  L.nav.forEach(([dest,label])=>{ choices.push([label, ()=>screenLieu(dest)]); });
+  L.nav.forEach(([dest,label])=>{ choices.push([label, dest==="village" ? screenVillage : ()=>screenLieu(dest)]); });
   if(key==="lac"){
     choices.push(["✨ Murmurer un nom au bord de l'eau...", ()=>screenValenkorPrompt()]);
   }
